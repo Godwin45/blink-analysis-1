@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blink Electrics</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: white;
+        }
+        .graph-section {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .graph-section:hover {
+            transform: scale(1.05);
+        }
+        .graph-card {
+            display: none;
+        }
+        .active-card {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Blink Electrics</h1>
+
+        <!-- Graph 1 Section -->
+        <div class="graph-section">
+            <h2>Graph 1</h2>
+            <div id="graph1"></div>
+            <div class="graph-card" id="graph1-card">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+                    Sed nisi.
+                </p>
+            </div>
+        </div>
+
+        <!-- Graph 2 Section -->
+        <div class="graph-section">
+            <h2>Graph 2</h2>
+            <div id="graph2"></div>
+            <div class="graph-card" id="graph2-card">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+                    Sed nisi.kjhvvgggvgvpoloi kjjhh
+                    nbgfgfggvhbhbjnkjjiku
+                    mn
+                </p>
+            </div>
+        </div>
+
+        <!-- Graph 3 Section -->
+        <div class="graph-section">
+            <h2>Graph 3</h2>
+            <div id="graph3"></div>
+            <div class="graph-card" id="graph3-card">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+                    Sed nisi.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var graph1Div = document.getElementById('graph1');
+        var graph2Div = document.getElementById('graph2');
+        var graph3Div = document.getElementById('graph3');
+    
+        var graph1Card = document.getElementById('graph1-card');
+        var graph2Card = document.getElementById('graph2-card');
+        var graph3Card = document.getElementById('graph3-card');
+    
+        var graph1Data = {{ graph1.to_json() | safe }};
+        var graph2Data = {{ graph2.to_json() | safe }};
+        var graph3Data = {{ graph3.to_json() | safe }};
+    
+        function showGraph1() {
+            graph1Card.classList.add('active-card');
+            graph2Card.classList.remove('active-card');
+            graph3Card.classList.remove('active-card');
+        }
+    
+        function showGraph2() {
+            graph1Card.classList.remove('active-card');
+            graph2Card.classList.add('active-card');
+            graph3Card.classList.remove('active-card');
+        }
+    
+        function showGraph3() {
+            graph1Card.classList.remove('active-card');
+            graph2Card.classList.remove('active-card');
+            graph3Card.classList.add('active-card');
+        }
+        
+    
+        Plotly.react(graph1Div, graph1Data.data, graph1Data.layout, { responsive: true });
+        Plotly.react(graph2Div, graph2Data.data, graph2Data.layout, { responsive: true });
+        Plotly.react(graph3Div, graph3Data.data, graph3Data.layout, { responsive: true });
+    
+        // Add click event listeners to sections
+        document.querySelector('.graph-section:nth-child(1)').addEventListener('click', function() {
+            showGraph1();
+        });
+        document.querySelector('.graph-section:nth-child(2)').addEventListener('click', function() {
+            showGraph2();
+        });
+        document.querySelector('.graph-section:nth-child(3)').addEventListener('click', function() {
+            showGraph3();
+        });
+    
+        // Show Graph 1 by default
+        showGraph1();
+    </script>
+    
+</body>
+</html>
