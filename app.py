@@ -315,4 +315,4 @@ def index():
     return render_template('index.html', graph1=graph1, graph2=graph2, graph3=graph3, graph4=graph4, graph5=graph5, graph6=graph6, graph7=graph7, graph8=graph8, graph9=graph9)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False, host = '0.0.0.0')
